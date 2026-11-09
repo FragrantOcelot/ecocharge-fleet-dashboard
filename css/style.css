@@ -1,0 +1,208 @@
+/* EcoCharge Fleet Dashboard: base styles */
+
+:root {
+  --bg: #f4f6f5;
+  --card: #ffffff;
+  --text: #1c2421;
+  --muted: #5d6b66;
+  --line: #e1e7e4;
+  --brand: #0f7a5c;
+  --brand-dark: #0a5a44;
+  --green: #1f9d6b;
+  --amber: #d08a12;
+  --red: #c8423a;
+  --blue: #2d6fd1;
+  --radius: 12px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.topbar {
+  background: var(--brand-dark);
+  color: #fff;
+  padding: 18px 24px;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; max-width: 1040px; margin: 0 auto; }
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brand-dark);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+h1 { font-size: 1.35rem; margin: 0; }
+.subtitle { margin: 0; opacity: 0.85; font-size: 0.9rem; }
+
+main {
+  max-width: 1040px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.section-head h2 { margin: 0 0 4px; font-size: 1.15rem; }
+.hint { margin: 0 0 16px; color: var(--muted); font-size: 0.9rem; }
+
+/* Summary chips */
+.summary {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.summary-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-value { font-size: 1.4rem; font-weight: 700; }
+.summary-label { color: var(--muted); font-size: 0.82rem; }
+
+/* Fleet table */
+.table-wrap { overflow-x: auto; }
+
+.fleet-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+
+.fleet-table th,
+.fleet-table td {
+  text-align: left;
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.fleet-table thead th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+
+.vehicle-id { font-family: ui-monospace, Consolas, monospace; font-weight: 600; }
+.muted { color: var(--muted); }
+
+.battery { display: flex; align-items: center; gap: 10px; }
+.battery-track { width: 120px; height: 10px; background: #e9eeec; border-radius: 99px; overflow: hidden; }
+.battery-fill { height: 100%; border-radius: 99px; }
+.battery-high .battery-fill { background: var(--green); }
+.battery-mid .battery-fill { background: var(--amber); }
+.battery-low .battery-fill { background: var(--red); }
+.battery-text { font-variant-numeric: tabular-nums; min-width: 3ch; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.status-available { background: #e3f5ec; color: #146b48; }
+.status-charging { background: #fff2dc; color: #8a5a07; }
+.status-trip { background: #e4edfb; color: #1f4f99; }
+.status-unknown { background: #eceff1; color: #4a5357; }
+.badge-ready { background: var(--brand); color: #fff; }
+
+/* Calculator */
+.calc-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+label { font-weight: 600; font-size: 0.9rem; }
+
+select,
+input {
+  font: inherit;
+  padding: 9px 11px;
+  border: 1px solid #c9d3cf;
+  border-radius: 8px;
+  background: #fff;
+}
+
+select:focus,
+input:focus,
+button:focus-visible { outline: 3px solid #9fd8c3; outline-offset: 1px; }
+
+[aria-invalid="true"] { border-color: var(--red); }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover { background: var(--brand-dark); }
+
+.error { color: var(--red); font-weight: 600; min-height: 1.5em; margin: 12px 0 0; }
+
+.result {
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #f8fbfa;
+}
+
+.result-vehicle { margin: 0; color: var(--muted); font-weight: 600; }
+.result-cost { margin: 4px 0 8px; display: flex; align-items: baseline; gap: 12px; }
+.result-usd { font-size: 2rem; font-weight: 800; }
+.result-aed { color: var(--muted); }
+.result-steps { margin: 0 0 8px; padding-left: 20px; font-family: ui-monospace, Consolas, monospace; font-size: 0.9rem; }
+.result-note { margin: 0; font-size: 0.9rem; }
+
+footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 8px 16px 32px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .calc-form { grid-template-columns: 1fr; }
+}
