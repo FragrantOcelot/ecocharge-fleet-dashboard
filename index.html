@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Content Security Policy: only scripts and styles from this site may run. Blocks injected scripts (XSS). -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>EcoCharge Fleet Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">EC</span>
+      <div>
+        <h1>EcoCharge Fleet Dashboard</h1>
+        <p class="subtitle">Prototype for the Abu Dhabi and Dubai fleet</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="fleet-heading">
+      <div class="section-head">
+        <h2 id="fleet-heading">Fleet overview</h2>
+        <p class="hint">Static demo data. A vehicle is <strong>Ready</strong> when it is Available and has at least 40% battery.</p>
+      </div>
+      <ul class="summary" id="fleet-summary" aria-label="Fleet summary"></ul>
+      <div class="table-wrap">
+        <table class="fleet-table">
+          <caption class="visually-hidden">All vehicles with their model, location, battery level and status</caption>
+          <thead>
+            <tr>
+              <th scope="col">Vehicle ID</th>
+              <th scope="col">Model</th>
+              <th scope="col">Location</th>
+              <th scope="col">Battery</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="fleet-body"></tbody>
+        </table>
+      </div>
+      <p class="error" id="fleet-error" hidden>Fleet data could not be loaded.</p>
+    </section>
+
+    <section class="card" aria-labelledby="calc-heading">
+      <div class="section-head">
+        <h2 id="calc-heading">Charging cost calculator</h2>
+        <p class="hint">Cost = charging hours &times; 7.5 kW &times; $0.15 per kWh</p>
+      </div>
+      <form id="calc-form" class="calc-form" novalidate>
+        <div class="field">
+          <label for="vehicle-select">Vehicle</label>
+          <select id="vehicle-select" name="vehicle"></select>
+        </div>
+        <div class="field">
+          <label for="hours-input">Charging duration (hours)</label>
+          <!-- type="text" on purpose: see "Code review note" in README.md -->
+          <input id="hours-input" name="hours" type="text" inputmode="decimal" autocomplete="off"
+                 placeholder="e.g. 2.5" aria-describedby="calc-error">
+        </div>
+        <button type="submit">Calculate cost</button>
+      </form>
+      <p id="calc-error" class="error" role="alert"></p>
+      <div id="calc-result" class="result" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <footer>ICS 432 Software Engineering, Team 3. Prototype with demo data only.</footer>
+
+  <script src="js/fleet-data.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/fleet.js"></script>
+  <script src="js/calculator-ui.js"></script>
+</body>
+</html>
